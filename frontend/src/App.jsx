@@ -9,8 +9,6 @@ function App() {
       .then((res) => res.json())
       .then((data) => {
         setIncidents(data);
-        console.log("Fetched incidents:", data);
-
         setLoading(false);
       })
       .catch((err) => {
@@ -20,27 +18,29 @@ function App() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gray-100 p-6">
-      <h1 className="text-3xl font-bold mb-4">Incident Timeline</h1>
-      {loading ? (
-        <p>Loading...</p>
-      ) : (
-        <ul className="space-y-6">
-  {incidents.map((item, idx) => (
-    <li key={idx} className="relative pl-6 border-l-2 border-blue-500">
-      <div className="absolute left-0 top-1.5 w-3 h-3 bg-blue-500 rounded-full"></div>
-      <div className="bg-white p-4 rounded shadow-sm">
-        <p className="text-xs text-gray-500">{item.timestamp}</p>
-        <h2 className="text-lg font-bold">{item.type}</h2>
-        <p className="text-sm text-gray-600">
-          <span className="font-semibold">Source:</span> {item.source}
-        </p>
-        <p className="text-gray-800 mt-1">{item.description}</p>
-      </div>
-    </li>
-  ))}
-</ul>
+    <div className="min-h-screen bg-gray-100 px-6 py-10 font-sans">
+      <h1 className="text-4xl font-bold text-center text-blue-800 mb-10">
+        Incident Timeline
+      </h1>
 
+      {loading ? (
+        <p className="text-center text-gray-500">Loading...</p>
+      ) : (
+        <ul className="relative border-l-2 border-blue-500 max-w-3xl mx-auto list-none space-y-10">
+          {incidents.map((item, idx) => (
+            <li key={idx} className="relative pl-8">
+              <div className="absolute top-2 left-0 w-4 h-4 bg-blue-600 rounded-full border-4 border-white shadow-md"></div>
+              <div className="bg-white rounded-md shadow-sm p-5">
+                <p className="text-xs text-gray-500">{item.timestamp}</p>
+                <h2 className="text-lg font-semibold text-blue-700">{item.type}</h2>
+                <p className="text-sm text-gray-700">
+                  <strong>Source:</strong> {item.source}
+                </p>
+                <p className="mt-2 text-gray-800">{item.description}</p>
+              </div>
+            </li>
+          ))}
+        </ul>
       )}
     </div>
   );
