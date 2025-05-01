@@ -1,153 +1,188 @@
 [
-    {
-      "id": "mi-001",
-      "title": "Login Outage",
-      "date": "2025-04-01T12:00:00Z",
-      "description": "Users were unable to log in due to authentication failures.",
-      "timeline": [
-        {
-          "timestamp": "2025-04-01T11:58:00Z",
-          "type": "Error Log Spike",
-          "source": "Splunk",
-          "description": "Authentication service logs showing repeated login failures."
-        },
-        {
-          "timestamp": "2025-04-01T12:00:00Z",
-          "type": "Ticket Spike",
-          "source": "ServiceNow",
-          "description": "23 user-submitted tickets reporting login issues."
-        },
-        {
-          "timestamp": "2025-04-01T12:03:00Z",
-          "type": "MI Proposed",
-          "source": "ServiceNow",
-          "description": "Major Incident proposed by engineer based on ticket surge."
-        },
-        {
-          "timestamp": "2025-04-01T12:04:00Z",
-          "type": "MI Approved",
-          "source": "ServiceNow",
-          "description": "Manager approved the incident as a Major Incident (MI)."
-        },
-        {
-          "timestamp": "2025-04-01T12:05:00Z",
-          "type": "Banner Posted",
-          "source": "ServiceNow",
-          "description": "User-facing banner added: 'We are aware of a login issue and investigating.'"
-        },
-        {
-          "timestamp": "2025-04-01T12:06:00Z",
-          "type": "Teams Channel Created",
-          "source": "Microsoft Teams",
-          "description": "War room channel and call created for MI discussion."
-        },
-        {
-          "timestamp": "2025-04-01T12:15:00Z",
-          "type": "Fix Implemented",
-          "source": "Internal",
-          "description": "Rollback of deployment from earlier that day completed."
-        }
-      ]
-    },
-    {
-      "id": "mi-002",
-      "title": "API Gateway Latency",
-      "date": "2025-03-14T04:30:00Z",
-      "description": "High latency observed in API Gateway responses.",
-      "timeline": [
-        {
-          "timestamp": "2025-03-14T04:27:00Z",
-          "type": "Error Log Spike",
-          "source": "OpenSearch",
-          "description": "Logs show increasing response times across multiple services."
-        },
-        {
-          "timestamp": "2025-03-14T04:30:00Z",
-          "type": "Ticket Spike",
-          "source": "ServiceNow",
-          "description": "15 tickets submitted regarding slow API response."
-        },
-        {
-          "timestamp": "2025-03-14T04:32:00Z",
-          "type": "MI Proposed",
-          "source": "ServiceNow",
-          "description": "Major Incident proposed due to volume of API complaints."
-        },
-        {
-          "timestamp": "2025-03-14T04:34:00Z",
-          "type": "MI Approved",
-          "source": "ServiceNow",
-          "description": "Manager approved the incident as a Major Incident (MI)."
-        },
-        {
-          "timestamp": "2025-03-14T04:35:00Z",
-          "type": "Banner Posted",
-          "source": "ServiceNow",
-          "description": "Banner: 'We are investigating delays in API Gateway performance.'"
-        },
-        {
-          "timestamp": "2025-03-14T04:36:00Z",
-          "type": "Teams Channel Created",
-          "source": "Microsoft Teams",
-          "description": "War room opened for incident response coordination."
-        },
-        {
-          "timestamp": "2025-03-14T04:45:00Z",
-          "type": "Fix Implemented",
-          "source": "Internal",
-          "description": "Traffic rerouted to secondary gateway node."
-        }
-      ]
-    },
-    {
-      "id": "mi-003",
-      "title": "Database Lock Issue",
-      "date": "2025-02-21T21:15:00Z",
-      "description": "Database deadlocks affected several internal tools.",
-      "timeline": [
-        {
-          "timestamp": "2025-02-21T21:11:00Z",
-          "type": "Error Log Spike",
-          "source": "Dynatrace",
-          "description": "Monitoring showed repeated lock timeout warnings."
-        },
-        {
-          "timestamp": "2025-02-21T21:15:00Z",
-          "type": "Ticket Spike",
-          "source": "ServiceNow",
-          "description": "11 tickets filed about data entry failures."
-        },
-        {
-          "timestamp": "2025-02-21T21:17:00Z",
-          "type": "MI Proposed",
-          "source": "ServiceNow",
-          "description": "Incident proposed due to pattern of database access errors."
-        },
-        {
-          "timestamp": "2025-02-21T21:18:00Z",
-          "type": "MI Approved",
-          "source": "ServiceNow",
-          "description": "Approved for immediate MI handling."
-        },
-        {
-          "timestamp": "2025-02-21T21:19:00Z",
-          "type": "Banner Posted",
-          "source": "ServiceNow",
-          "description": "Banner posted: 'Some tools may experience errors while saving.'"
-        },
-        {
-          "timestamp": "2025-02-21T21:20:00Z",
-          "type": "Teams Channel Created",
-          "source": "Microsoft Teams",
-          "description": "War room created to address DB locking issues."
-        },
-        {
-          "timestamp": "2025-02-21T21:30:00Z",
-          "type": "Fix Implemented",
-          "source": "Internal",
-          "description": "Killed stale transactions and restarted locked tables."
-        }
-      ]
+  {
+    "id": "mi-001",
+    "title": "Login Outage",
+    "date": "2025-04-01T12:00:00Z",
+    "description": "Users were unable to log in due to authentication failures.",
+    "category": "Member Website",
+    "assignment_group": "Internal Applications",
+    "timeline": [
+      {
+        "timestamp": "2025-04-01T11:58:00Z",
+        "type": "Error Log Spike",
+        "source": "Splunk",
+        "description": "Authentication service logs showing repeated login failures."
+      },
+      {
+        "timestamp": "2025-04-01T12:00:00Z",
+        "type": "Ticket Spike",
+        "source": "ServiceNow",
+        "description": "23 user-submitted tickets reporting login issues."
+      },
+      {
+        "timestamp": "2025-04-01T12:03:00Z",
+        "type": "MI Proposed",
+        "source": "ServiceNow",
+        "description": "MI proposed by Internal Applications."
+      },
+      {
+        "timestamp": "2025-04-01T12:04:00Z",
+        "type": "MI Approved",
+        "source": "ServiceNow",
+        "description": "Manager approved the incident as a Major Incident (MI)."
+      },
+      {
+        "timestamp": "2025-04-01T12:05:00Z",
+        "type": "Banner Posted",
+        "source": "ServiceNow",
+        "description": "User-facing banner added: 'We are aware of a login issue and investigating.'"
+      },
+      {
+        "timestamp": "2025-04-01T12:06:00Z",
+        "type": "Teams Channel Created",
+        "source": "Microsoft Teams",
+        "description": "War room channel and call created for MI discussion."
+      },
+      {
+        "timestamp": "2025-04-01T12:15:00Z",
+        "type": "Fix Implemented",
+        "source": "Internal",
+        "description": "Rollback of deployment from earlier that day completed."
+      }
+    ],
+    "post_incident_summary": {
+      "summary": "A login outage occurred due to a failed authentication deployment. Users could not access their accounts for approximately 17 minutes.",
+      "root_cause": "A faulty deployment to the authentication service caused token generation to fail.",
+      "timeline": "Issue began at 11:58 AM. Detected by Splunk. MI declared by 12:03 PM. Resolved at 12:15 PM via rollback.",
+      "impact": "All users were unable to log in to the Member Website during the outage window.",
+      "detection": "Splunk logs showed increased 401/403 errors, triggering investigation.",
+      "response": "Incident escalated via ServiceNow. MI war room created. Investigation conducted jointly by Internal Applications and SRE.",
+      "recovery": "Rollback of the deployment restored login functionality.",
+      "prevention_plan": "Add automated deployment validation for authentication. Require blue/green deploy for critical login endpoints."
     }
-  ]
-  
+  },
+  {
+    "id": "mi-002",
+    "title": "API Gateway Latency",
+    "date": "2025-03-14T04:30:00Z",
+    "description": "High latency observed in API Gateway responses.",
+    "category": "Authorizations",
+    "assignment_group": "API Services",
+    "timeline": [
+      {
+        "timestamp": "2025-03-14T04:27:00Z",
+        "type": "Error Log Spike",
+        "source": "OpenSearch",
+        "description": "Logs show increasing response times across multiple services."
+      },
+      {
+        "timestamp": "2025-03-14T04:30:00Z",
+        "type": "Ticket Spike",
+        "source": "ServiceNow",
+        "description": "15 tickets submitted regarding slow API response."
+      },
+      {
+        "timestamp": "2025-03-14T04:32:00Z",
+        "type": "MI Proposed",
+        "source": "ServiceNow",
+        "description": "MI proposed by API Services."
+      },
+      {
+        "timestamp": "2025-03-14T04:34:00Z",
+        "type": "MI Approved",
+        "source": "ServiceNow",
+        "description": "Manager approved the incident as a Major Incident (MI)."
+      },
+      {
+        "timestamp": "2025-03-14T04:35:00Z",
+        "type": "Banner Posted",
+        "source": "ServiceNow",
+        "description": "Banner: 'We are investigating delays in API Gateway performance.'"
+      },
+      {
+        "timestamp": "2025-03-14T04:36:00Z",
+        "type": "Teams Channel Created",
+        "source": "Microsoft Teams",
+        "description": "War room opened for incident response coordination."
+      },
+      {
+        "timestamp": "2025-03-14T04:45:00Z",
+        "type": "Fix Implemented",
+        "source": "Internal",
+        "description": "Traffic rerouted to secondary gateway node."
+      }
+    ],
+    "post_incident_summary": {
+      "summary": "Latency across API Gateway services resulted in degraded application performance.",
+      "root_cause": "A misconfigured load balancer introduced high latency across internal API routes.",
+      "timeline": "Latency spike detected at 4:27 AM. MI proposed at 4:32 AM. Mitigated at 4:45 AM by traffic reroute.",
+      "impact": "Customers experienced delayed responses and intermittent timeouts across APIs.",
+      "detection": "OpenSearch logs revealed surging response times across critical services.",
+      "response": "API Services team initiated an MI. War room created. Routing configuration reviewed and updated.",
+      "recovery": "Traffic was rerouted to healthy gateway nodes.",
+      "prevention_plan": "Audit all load balancer configs. Implement synthetic monitoring across API routes."
+    }
+  },
+  {
+    "id": "mi-003",
+    "title": "Database Lock Issue",
+    "date": "2025-02-21T21:15:00Z",
+    "description": "Database deadlocks affected several internal tools.",
+    "category": "Database",
+    "assignment_group": "Data Engineering",
+    "timeline": [
+      {
+        "timestamp": "2025-02-21T21:11:00Z",
+        "type": "Error Log Spike",
+        "source": "Dynatrace",
+        "description": "Monitoring showed repeated lock timeout warnings."
+      },
+      {
+        "timestamp": "2025-02-21T21:15:00Z",
+        "type": "Ticket Spike",
+        "source": "ServiceNow",
+        "description": "11 tickets filed about data entry failures."
+      },
+      {
+        "timestamp": "2025-02-21T21:17:00Z",
+        "type": "MI Proposed",
+        "source": "ServiceNow",
+        "description": "MI proposed by Data Engineering."
+      },
+      {
+        "timestamp": "2025-02-21T21:18:00Z",
+        "type": "MI Approved",
+        "source": "ServiceNow",
+        "description": "Approved for immediate MI handling."
+      },
+      {
+        "timestamp": "2025-02-21T21:19:00Z",
+        "type": "Banner Posted",
+        "source": "ServiceNow",
+        "description": "Banner posted: 'Some tools may experience errors while saving.'"
+      },
+      {
+        "timestamp": "2025-02-21T21:20:00Z",
+        "type": "Teams Channel Created",
+        "source": "Microsoft Teams",
+        "description": "War room created to address DB locking issues."
+      },
+      {
+        "timestamp": "2025-02-21T21:30:00Z",
+        "type": "Fix Implemented",
+        "source": "Internal",
+        "description": "Killed stale transactions and restarted locked tables."
+      }
+    ],
+    "post_incident_summary": {
+      "summary": "Deadlock errors in the database caused failures across multiple internal tools.",
+      "root_cause": "Unoptimized queries during peak hours led to lock contention and table deadlocks.",
+      "timeline": "Errors surfaced at 9:11 PM. MI declared at 9:17 PM. Resolved at 9:30 PM by clearing stale locks.",
+      "impact": "Multiple internal teams could not use tools for data entry or report generation.",
+      "detection": "Dynatrace monitoring flagged lock timeout exceptions.",
+      "response": "MI initiated by Data Engineering. War room launched. Query analysis and lock clearance performed.",
+      "recovery": "Problem queries were killed and indexes rebuilt on affected tables.",
+      "prevention_plan": "Refactor queries. Add timeout logic. Conduct DB locking training for engineers."
+    }
+  }
+]
