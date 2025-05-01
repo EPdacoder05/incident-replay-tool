@@ -1,10 +1,16 @@
 [
     {
-      "id": 1,
+      "id": "mi-001",
       "title": "Login Outage",
-      "timestamp": "2025-04-01T12:00:00Z",
-      "description": "Login failures impacted users across the system.",
-      "events": [
+      "date": "2025-04-01T12:00:00Z",
+      "description": "Users were unable to log in due to authentication failures.",
+      "timeline": [
+        {
+          "timestamp": "2025-04-01T11:58:00Z",
+          "type": "Error Log Spike",
+          "source": "Splunk",
+          "description": "Authentication service logs showing repeated login failures."
+        },
         {
           "timestamp": "2025-04-01T12:00:00Z",
           "type": "Ticket Spike",
@@ -19,15 +25,15 @@
         },
         {
           "timestamp": "2025-04-01T12:04:00Z",
-          "type": "Banner Posted",
-          "source": "ServiceNow",
-          "description": "User-facing banner added: 'We are aware of a login issue and investigating.'"
-        },
-        {
-          "timestamp": "2025-04-01T12:05:00Z",
           "type": "MI Approved",
           "source": "ServiceNow",
           "description": "Manager approved the incident as a Major Incident (MI)."
+        },
+        {
+          "timestamp": "2025-04-01T12:05:00Z",
+          "type": "Banner Posted",
+          "source": "ServiceNow",
+          "description": "User-facing banner added: 'We are aware of a login issue and investigating.'"
         },
         {
           "timestamp": "2025-04-01T12:06:00Z",
@@ -36,28 +42,110 @@
           "description": "War room channel and call created for MI discussion."
         },
         {
-          "timestamp": "2025-04-01T12:07:00Z",
-          "type": "Page Sent",
-          "source": "PagerDuty",
-          "description": "Engineering on-call team paged for login-service outage."
-        },
-        {
-          "timestamp": "2025-04-01T12:10:00Z",
-          "type": "Alert Spike",
-          "source": "Splunk",
-          "description": "Login-service logs show repeated authentication errors."
-        },
-        {
-          "timestamp": "2025-04-01T12:12:00Z",
-          "type": "Monitoring Spike",
-          "source": "Dynatrace",
-          "description": "Login-service latency exceeds 1.5s threshold."
-        },
-        {
           "timestamp": "2025-04-01T12:15:00Z",
           "type": "Fix Implemented",
           "source": "Internal",
           "description": "Rollback of deployment from earlier that day completed."
+        }
+      ]
+    },
+    {
+      "id": "mi-002",
+      "title": "API Gateway Latency",
+      "date": "2025-03-14T04:30:00Z",
+      "description": "High latency observed in API Gateway responses.",
+      "timeline": [
+        {
+          "timestamp": "2025-03-14T04:27:00Z",
+          "type": "Error Log Spike",
+          "source": "OpenSearch",
+          "description": "Logs show increasing response times across multiple services."
+        },
+        {
+          "timestamp": "2025-03-14T04:30:00Z",
+          "type": "Ticket Spike",
+          "source": "ServiceNow",
+          "description": "15 tickets submitted regarding slow API response."
+        },
+        {
+          "timestamp": "2025-03-14T04:32:00Z",
+          "type": "MI Proposed",
+          "source": "ServiceNow",
+          "description": "Major Incident proposed due to volume of API complaints."
+        },
+        {
+          "timestamp": "2025-03-14T04:34:00Z",
+          "type": "MI Approved",
+          "source": "ServiceNow",
+          "description": "Manager approved the incident as a Major Incident (MI)."
+        },
+        {
+          "timestamp": "2025-03-14T04:35:00Z",
+          "type": "Banner Posted",
+          "source": "ServiceNow",
+          "description": "Banner: 'We are investigating delays in API Gateway performance.'"
+        },
+        {
+          "timestamp": "2025-03-14T04:36:00Z",
+          "type": "Teams Channel Created",
+          "source": "Microsoft Teams",
+          "description": "War room opened for incident response coordination."
+        },
+        {
+          "timestamp": "2025-03-14T04:45:00Z",
+          "type": "Fix Implemented",
+          "source": "Internal",
+          "description": "Traffic rerouted to secondary gateway node."
+        }
+      ]
+    },
+    {
+      "id": "mi-003",
+      "title": "Database Lock Issue",
+      "date": "2025-02-21T21:15:00Z",
+      "description": "Database deadlocks affected several internal tools.",
+      "timeline": [
+        {
+          "timestamp": "2025-02-21T21:11:00Z",
+          "type": "Error Log Spike",
+          "source": "Dynatrace",
+          "description": "Monitoring showed repeated lock timeout warnings."
+        },
+        {
+          "timestamp": "2025-02-21T21:15:00Z",
+          "type": "Ticket Spike",
+          "source": "ServiceNow",
+          "description": "11 tickets filed about data entry failures."
+        },
+        {
+          "timestamp": "2025-02-21T21:17:00Z",
+          "type": "MI Proposed",
+          "source": "ServiceNow",
+          "description": "Incident proposed due to pattern of database access errors."
+        },
+        {
+          "timestamp": "2025-02-21T21:18:00Z",
+          "type": "MI Approved",
+          "source": "ServiceNow",
+          "description": "Approved for immediate MI handling."
+        },
+        {
+          "timestamp": "2025-02-21T21:19:00Z",
+          "type": "Banner Posted",
+          "source": "ServiceNow",
+          "description": "Banner posted: 'Some tools may experience errors while saving.'"
+        },
+        {
+          "timestamp": "2025-02-21T21:20:00Z",
+          "type": "Teams Channel Created",
+          "source": "Microsoft Teams",
+          "description": "War room created to address DB locking issues."
+        },
+        {
+          "timestamp": "2025-02-21T21:30:00Z",
+          "type": "Fix Implemented",
+          "source": "Internal",
+          "description": "Killed stale transactions and restarted locked tables."
         }
       ]
     }

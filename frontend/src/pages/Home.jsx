@@ -22,7 +22,13 @@ function Home() {
             className="block bg-white p-4 rounded shadow hover:bg-blue-50 transition"
           >
             <h2 className="text-lg font-semibold">{incident.title}</h2>
-            <p className="text-sm text-gray-500">{new Date(incident.timestamp).toLocaleString()}</p>
+            <p className="text-sm text-gray-500">
+              {new Date(incident.date).toLocaleDateString(undefined, {
+                year: "numeric",
+                month: "long",
+                day: "numeric"
+              })}
+            </p>
           </Link>
         ))}
       </div>
