@@ -9,6 +9,8 @@ function App() {
       .then((res) => res.json())
       .then((data) => {
         setIncidents(data);
+        console.log("Fetched incidents:", data);
+
         setLoading(false);
       })
       .catch((err) => {
@@ -23,21 +25,22 @@ function App() {
       {loading ? (
         <p>Loading...</p>
       ) : (
-        <ul className="space-y-4">
-          {incidents.map((item, idx) => (
-            <li
-              key={idx}
-              className="bg-white shadow p-4 rounded border-l-4 border-blue-500"
-            >
-              <p className="text-sm text-gray-500">{item.timestamp}</p>
-              <p className="font-semibold">{item.type}</p>
-              <p className="text-sm">
-                <strong>Source:</strong> {item.source}
-              </p>
-              <p>{item.description}</p>
-            </li>
-          ))}
-        </ul>
+        <ul className="space-y-6">
+  {incidents.map((item, idx) => (
+    <li key={idx} className="relative pl-6 border-l-2 border-blue-500">
+      <div className="absolute left-0 top-1.5 w-3 h-3 bg-blue-500 rounded-full"></div>
+      <div className="bg-white p-4 rounded shadow-sm">
+        <p className="text-xs text-gray-500">{item.timestamp}</p>
+        <h2 className="text-lg font-bold">{item.type}</h2>
+        <p className="text-sm text-gray-600">
+          <span className="font-semibold">Source:</span> {item.source}
+        </p>
+        <p className="text-gray-800 mt-1">{item.description}</p>
+      </div>
+    </li>
+  ))}
+</ul>
+
       )}
     </div>
   );

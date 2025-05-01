@@ -6,6 +6,11 @@ __pycache__/
 # C extensions
 *.so
 
+# Vite
+dist
+node_modules
+
+
 # Distribution / packaging
 .Python
 build/
