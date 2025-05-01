@@ -1,188 +1,1214 @@
 [
   {
-    "id": "mi-001",
-    "title": "Login Outage",
-    "date": "2025-04-01T12:00:00Z",
-    "description": "Users were unable to log in due to authentication failures.",
+    "title": "ID Cards",
+    "date": "2025-04-30T13:15:08Z",
+    "description": "Members are unable to download ID cards from their member website.",
     "category": "Member Website",
     "assignment_group": "Internal Applications",
+    "id": "mi-a590d6c9",
     "timeline": [
       {
-        "timestamp": "2025-04-01T11:58:00Z",
+        "timestamp": "2025-04-30T13:13:08Z",
         "type": "Error Log Spike",
-        "source": "Splunk",
-        "description": "Authentication service logs showing repeated login failures."
+        "source": "Dynatrace",
+        "description": "Automated monitoring detected unusual system behavior.",
+        "errors": [
+          "TimeoutException: DB connection pool exhausted",
+          "500 Internal Server Error at /auth/login",
+          "NullReferenceException at AuthController.cs:88"
+        ]
       },
       {
-        "timestamp": "2025-04-01T12:00:00Z",
+        "timestamp": "2025-04-30T13:15:08Z",
         "type": "Ticket Spike",
         "source": "ServiceNow",
-        "description": "23 user-submitted tickets reporting login issues."
+        "description": "11 user-submitted tickets reporting the issue."
       },
       {
-        "timestamp": "2025-04-01T12:03:00Z",
+        "timestamp": "2025-04-30T13:17:08Z",
         "type": "MI Proposed",
         "source": "ServiceNow",
         "description": "MI proposed by Internal Applications."
       },
       {
-        "timestamp": "2025-04-01T12:04:00Z",
+        "timestamp": "2025-04-30T13:18:08Z",
         "type": "MI Approved",
         "source": "ServiceNow",
-        "description": "Manager approved the incident as a Major Incident (MI)."
+        "description": "MI approved by manager."
       },
       {
-        "timestamp": "2025-04-01T12:05:00Z",
+        "timestamp": "2025-04-30T13:19:08Z",
         "type": "Banner Posted",
         "source": "ServiceNow",
-        "description": "User-facing banner added: 'We are aware of a login issue and investigating.'"
+        "description": "User-facing banner added about the outage."
       },
       {
-        "timestamp": "2025-04-01T12:06:00Z",
+        "timestamp": "2025-04-30T13:20:08Z",
+        "type": "PagerDuty Alert Sent",
+        "source": "PagerDuty",
+        "description": "Pager sent for escalation.",
+        "alerts": [
+          {
+            "recipient": "Internal Applications",
+            "timestamp": "2025-04-30T13:20:08Z"
+          },
+          {
+            "recipient": "On-Call Engineers",
+            "timestamp": "2025-04-30T13:22:08Z"
+          },
+          {
+            "recipient": "Data Engineering",
+            "timestamp": "2025-04-30T13:24:08Z"
+          },
+          {
+            "recipient": "Alice Nguyen",
+            "timestamp": "2025-04-30T13:26:08Z"
+          }
+        ]
+      },
+      {
+        "timestamp": "2025-04-30T13:20:08Z",
         "type": "Teams Channel Created",
         "source": "Microsoft Teams",
-        "description": "War room channel and call created for MI discussion."
+        "description": "War room created to handle incident response.",
+        "teams_logs": {
+          "meeting_started": "12:06 PM",
+          "meeting_ended": "12:45 PM",
+          "joined_users": [
+            "Alice",
+            "Bob",
+            "Carol"
+          ],
+          "chat_log": [
+            "Alice: Investigating now.",
+            "Bob: Seeing the same in Splunk.",
+            "Carol: On a call with vendor."
+          ]
+        }
       },
       {
-        "timestamp": "2025-04-01T12:15:00Z",
+        "timestamp": "2025-04-30T14:11:08Z",
         "type": "Fix Implemented",
         "source": "Internal",
-        "description": "Rollback of deployment from earlier that day completed."
+        "description": "Rollback deployed and DB config reset per resolution notes."
       }
     ],
     "post_incident_summary": {
-      "summary": "A login outage occurred due to a failed authentication deployment. Users could not access their accounts for approximately 17 minutes.",
-      "root_cause": "A faulty deployment to the authentication service caused token generation to fail.",
-      "timeline": "Issue began at 11:58 AM. Detected by Splunk. MI declared by 12:03 PM. Resolved at 12:15 PM via rollback.",
-      "impact": "All users were unable to log in to the Member Website during the outage window.",
-      "detection": "Splunk logs showed increased 401/403 errors, triggering investigation.",
-      "response": "Incident escalated via ServiceNow. MI war room created. Investigation conducted jointly by Internal Applications and SRE.",
-      "recovery": "Rollback of the deployment restored login functionality.",
-      "prevention_plan": "Add automated deployment validation for authentication. Require blue/green deploy for critical login endpoints."
+      "summary": "The issue titled 'ID Cards' caused disruptions until mitigated by internal teams.",
+      "root_cause": "A configuration error during deployment introduced the issue.",
+      "timeline": "Detected via logs, escalated by ticket volume, mitigated through rollback and patch.",
+      "impact": "Impacted users were unable to use key services during the outage window.",
+      "detection": "Triggered by monitoring and ticket surge.",
+      "response": "Incident war room initiated and engineers collaborated on a fix.",
+      "recovery": "Rollback and system reset resolved the issue.",
+      "prevention_plan": "Code review improvements and enhanced monitoring alerts."
     }
   },
   {
-    "id": "mi-002",
-    "title": "API Gateway Latency",
-    "date": "2025-03-14T04:30:00Z",
-    "description": "High latency observed in API Gateway responses.",
-    "category": "Authorizations",
-    "assignment_group": "API Services",
+    "title": "SMC Issue",
+    "date": "2025-04-30T10:35:58Z",
+    "description": "Warriors are unable to send and receive SMCs.",
+    "category": "Secure Message Center",
+    "assignment_group": "Communications Team",
+    "id": "mi-2f302860",
     "timeline": [
       {
-        "timestamp": "2025-03-14T04:27:00Z",
+        "timestamp": "2025-04-30T10:33:58Z",
         "type": "Error Log Spike",
-        "source": "OpenSearch",
-        "description": "Logs show increasing response times across multiple services."
+        "source": "Splunk",
+        "description": "Automated monitoring detected unusual system behavior.",
+        "errors": [
+          "TimeoutException: DB connection pool exhausted",
+          "500 Internal Server Error at /auth/login",
+          "NullReferenceException at AuthController.cs:88"
+        ]
       },
       {
-        "timestamp": "2025-03-14T04:30:00Z",
+        "timestamp": "2025-04-30T10:35:58Z",
         "type": "Ticket Spike",
         "source": "ServiceNow",
-        "description": "15 tickets submitted regarding slow API response."
+        "description": "7 user-submitted tickets reporting the issue."
       },
       {
-        "timestamp": "2025-03-14T04:32:00Z",
+        "timestamp": "2025-04-30T10:37:58Z",
         "type": "MI Proposed",
         "source": "ServiceNow",
-        "description": "MI proposed by API Services."
+        "description": "MI proposed by Communications Team."
       },
       {
-        "timestamp": "2025-03-14T04:34:00Z",
+        "timestamp": "2025-04-30T10:38:58Z",
         "type": "MI Approved",
         "source": "ServiceNow",
-        "description": "Manager approved the incident as a Major Incident (MI)."
+        "description": "MI approved by manager."
       },
       {
-        "timestamp": "2025-03-14T04:35:00Z",
+        "timestamp": "2025-04-30T10:39:58Z",
         "type": "Banner Posted",
         "source": "ServiceNow",
-        "description": "Banner: 'We are investigating delays in API Gateway performance.'"
+        "description": "User-facing banner added about the outage."
       },
       {
-        "timestamp": "2025-03-14T04:36:00Z",
+        "timestamp": "2025-04-30T10:40:58Z",
+        "type": "PagerDuty Alert Sent",
+        "source": "PagerDuty",
+        "description": "Pager sent for escalation.",
+        "alerts": [
+          {
+            "recipient": "Bob Patel",
+            "timestamp": "2025-04-30T10:40:58Z"
+          },
+          {
+            "recipient": "Data Engineering",
+            "timestamp": "2025-04-30T10:42:58Z"
+          },
+          {
+            "recipient": "Internal Applications",
+            "timestamp": "2025-04-30T10:44:58Z"
+          }
+        ]
+      },
+      {
+        "timestamp": "2025-04-30T10:40:58Z",
         "type": "Teams Channel Created",
         "source": "Microsoft Teams",
-        "description": "War room opened for incident response coordination."
+        "description": "War room created to handle incident response.",
+        "teams_logs": {
+          "meeting_started": "12:06 PM",
+          "meeting_ended": "12:45 PM",
+          "joined_users": [
+            "Alice",
+            "Bob",
+            "Carol"
+          ],
+          "chat_log": [
+            "Alice: Investigating now.",
+            "Bob: Seeing the same in Splunk.",
+            "Carol: On a call with vendor."
+          ]
+        }
       },
       {
-        "timestamp": "2025-03-14T04:45:00Z",
+        "timestamp": "2025-04-30T12:06:58Z",
         "type": "Fix Implemented",
         "source": "Internal",
-        "description": "Traffic rerouted to secondary gateway node."
+        "description": "Rollback deployed and DB config reset per resolution notes."
       }
     ],
     "post_incident_summary": {
-      "summary": "Latency across API Gateway services resulted in degraded application performance.",
-      "root_cause": "A misconfigured load balancer introduced high latency across internal API routes.",
-      "timeline": "Latency spike detected at 4:27 AM. MI proposed at 4:32 AM. Mitigated at 4:45 AM by traffic reroute.",
-      "impact": "Customers experienced delayed responses and intermittent timeouts across APIs.",
-      "detection": "OpenSearch logs revealed surging response times across critical services.",
-      "response": "API Services team initiated an MI. War room created. Routing configuration reviewed and updated.",
-      "recovery": "Traffic was rerouted to healthy gateway nodes.",
-      "prevention_plan": "Audit all load balancer configs. Implement synthetic monitoring across API routes."
+      "summary": "The issue titled 'SMC Issue' caused disruptions until mitigated by internal teams.",
+      "root_cause": "A configuration error during deployment introduced the issue.",
+      "timeline": "Detected via logs, escalated by ticket volume, mitigated through rollback and patch.",
+      "impact": "Impacted users were unable to use key services during the outage window.",
+      "detection": "Triggered by monitoring and ticket surge.",
+      "response": "Incident war room initiated and engineers collaborated on a fix.",
+      "recovery": "Rollback and system reset resolved the issue.",
+      "prevention_plan": "Code review improvements and enhanced monitoring alerts."
     }
   },
   {
-    "id": "mi-003",
-    "title": "Database Lock Issue",
-    "date": "2025-02-21T21:15:00Z",
-    "description": "Database deadlocks affected several internal tools.",
-    "category": "Database",
+    "title": "Unable to build Authorizations",
+    "date": "2025-04-29T09:13:24Z",
+    "description": "Warriors are unable to build authorizations for members.",
+    "category": "Authorizations",
+    "assignment_group": "Authorization Services",
+    "id": "mi-1377e1f5",
+    "timeline": [
+      {
+        "timestamp": "2025-04-29T09:11:24Z",
+        "type": "Error Log Spike",
+        "source": "OpenSearch",
+        "description": "Automated monitoring detected unusual system behavior.",
+        "errors": [
+          "TimeoutException: DB connection pool exhausted",
+          "500 Internal Server Error at /auth/login",
+          "NullReferenceException at AuthController.cs:88"
+        ]
+      },
+      {
+        "timestamp": "2025-04-29T09:13:24Z",
+        "type": "Ticket Spike",
+        "source": "ServiceNow",
+        "description": "24 user-submitted tickets reporting the issue."
+      },
+      {
+        "timestamp": "2025-04-29T09:15:24Z",
+        "type": "MI Proposed",
+        "source": "ServiceNow",
+        "description": "MI proposed by Authorization Services."
+      },
+      {
+        "timestamp": "2025-04-29T09:16:24Z",
+        "type": "MI Approved",
+        "source": "ServiceNow",
+        "description": "MI approved by manager."
+      },
+      {
+        "timestamp": "2025-04-29T09:17:24Z",
+        "type": "Banner Posted",
+        "source": "ServiceNow",
+        "description": "User-facing banner added about the outage."
+      },
+      {
+        "timestamp": "2025-04-29T09:18:24Z",
+        "type": "PagerDuty Alert Sent",
+        "source": "PagerDuty",
+        "description": "Pager sent for escalation.",
+        "alerts": [
+          {
+            "recipient": "Communications Team",
+            "timestamp": "2025-04-29T09:18:24Z"
+          },
+          {
+            "recipient": "Core Infrastructure",
+            "timestamp": "2025-04-29T09:20:24Z"
+          },
+          {
+            "recipient": "Alice Nguyen",
+            "timestamp": "2025-04-29T09:22:24Z"
+          }
+        ]
+      },
+      {
+        "timestamp": "2025-04-29T09:18:24Z",
+        "type": "Teams Channel Created",
+        "source": "Microsoft Teams",
+        "description": "War room created to handle incident response.",
+        "teams_logs": {
+          "meeting_started": "12:06 PM",
+          "meeting_ended": "12:45 PM",
+          "joined_users": [
+            "Alice",
+            "Bob",
+            "Carol"
+          ],
+          "chat_log": [
+            "Alice: Investigating now.",
+            "Bob: Seeing the same in Splunk.",
+            "Carol: On a call with vendor."
+          ]
+        }
+      },
+      {
+        "timestamp": "2025-04-29T11:24:24Z",
+        "type": "Fix Implemented",
+        "source": "Internal",
+        "description": "Rollback deployed and DB config reset per resolution notes."
+      }
+    ],
+    "post_incident_summary": {
+      "summary": "The issue titled 'Unable to build Authorizations' caused disruptions until mitigated by internal teams.",
+      "root_cause": "A configuration error during deployment introduced the issue.",
+      "timeline": "Detected via logs, escalated by ticket volume, mitigated through rollback and patch.",
+      "impact": "Impacted users were unable to use key services during the outage window.",
+      "detection": "Triggered by monitoring and ticket surge.",
+      "response": "Incident war room initiated and engineers collaborated on a fix.",
+      "recovery": "Rollback and system reset resolved the issue.",
+      "prevention_plan": "Code review improvements and enhanced monitoring alerts."
+    }
+  },
+  {
+    "title": "PIVIT outage",
+    "date": "2025-04-28T11:38:51Z",
+    "description": "Warriors reporting an outage with PIVIT and related applications.",
+    "category": "PIVIT",
+    "assignment_group": "Core Infrastructure",
+    "id": "mi-64ec7065",
+    "timeline": [
+      {
+        "timestamp": "2025-04-28T11:36:51Z",
+        "type": "Error Log Spike",
+        "source": "Splunk",
+        "description": "Automated monitoring detected unusual system behavior.",
+        "errors": [
+          "TimeoutException: DB connection pool exhausted",
+          "500 Internal Server Error at /auth/login",
+          "NullReferenceException at AuthController.cs:88"
+        ]
+      },
+      {
+        "timestamp": "2025-04-28T11:38:51Z",
+        "type": "Ticket Spike",
+        "source": "ServiceNow",
+        "description": "18 user-submitted tickets reporting the issue."
+      },
+      {
+        "timestamp": "2025-04-28T11:40:51Z",
+        "type": "MI Proposed",
+        "source": "ServiceNow",
+        "description": "MI proposed by Core Infrastructure."
+      },
+      {
+        "timestamp": "2025-04-28T11:41:51Z",
+        "type": "MI Approved",
+        "source": "ServiceNow",
+        "description": "MI approved by manager."
+      },
+      {
+        "timestamp": "2025-04-28T11:42:51Z",
+        "type": "Banner Posted",
+        "source": "ServiceNow",
+        "description": "User-facing banner added about the outage."
+      },
+      {
+        "timestamp": "2025-04-28T11:43:51Z",
+        "type": "PagerDuty Alert Sent",
+        "source": "PagerDuty",
+        "description": "Pager sent for escalation.",
+        "alerts": [
+          {
+            "recipient": "Core Infrastructure",
+            "timestamp": "2025-04-28T11:43:51Z"
+          },
+          {
+            "recipient": "Bob Patel",
+            "timestamp": "2025-04-28T11:45:51Z"
+          }
+        ]
+      },
+      {
+        "timestamp": "2025-04-28T11:43:51Z",
+        "type": "Teams Channel Created",
+        "source": "Microsoft Teams",
+        "description": "War room created to handle incident response.",
+        "teams_logs": {
+          "meeting_started": "12:06 PM",
+          "meeting_ended": "12:45 PM",
+          "joined_users": [
+            "Alice",
+            "Bob",
+            "Carol"
+          ],
+          "chat_log": [
+            "Alice: Investigating now.",
+            "Bob: Seeing the same in Splunk.",
+            "Carol: On a call with vendor."
+          ]
+        }
+      },
+      {
+        "timestamp": "2025-04-28T12:14:51Z",
+        "type": "Fix Implemented",
+        "source": "Internal",
+        "description": "Rollback deployed and DB config reset per resolution notes."
+      }
+    ],
+    "post_incident_summary": {
+      "summary": "The issue titled 'PIVIT outage' caused disruptions until mitigated by internal teams.",
+      "root_cause": "A configuration error during deployment introduced the issue.",
+      "timeline": "Detected via logs, escalated by ticket volume, mitigated through rollback and patch.",
+      "impact": "Impacted users were unable to use key services during the outage window.",
+      "detection": "Triggered by monitoring and ticket surge.",
+      "response": "Incident war room initiated and engineers collaborated on a fix.",
+      "recovery": "Rollback and system reset resolved the issue.",
+      "prevention_plan": "Code review improvements and enhanced monitoring alerts."
+    }
+  },
+  {
+    "id": "mi-c9077874",
+    "title": "Auth Spike",
+    "date": "2025-02-25T09:02:00Z",
+    "description": "Auth Spike affecting user access or operations.",
+    "category": "Member Website",
+    "assignment_group": "Core Infrastructure",
+    "timeline": [
+      {
+        "timestamp": "2025-02-25T09:00:00Z",
+        "type": "Error Log Spike",
+        "source": "OpenSearch",
+        "description": "Automated monitoring detected unusual system behavior.",
+        "errors": [
+          "TimeoutException: DB connection pool exhausted",
+          "500 Internal Server Error at /auth/login",
+          "NullReferenceException at AuthController.cs:88"
+        ]
+      },
+      {
+        "timestamp": "2025-02-25T09:02:00Z",
+        "type": "Ticket Spike",
+        "source": "ServiceNow",
+        "description": "22 user-submitted tickets reporting the issue."
+      },
+      {
+        "timestamp": "2025-02-25T09:04:00Z",
+        "type": "MI Proposed",
+        "source": "ServiceNow",
+        "description": "MI proposed by Core Infrastructure."
+      },
+      {
+        "timestamp": "2025-02-25T09:05:00Z",
+        "type": "MI Approved",
+        "source": "ServiceNow",
+        "description": "MI approved by manager."
+      },
+      {
+        "timestamp": "2025-02-25T09:06:00Z",
+        "type": "Banner Posted",
+        "source": "ServiceNow",
+        "description": "User-facing banner added about the outage."
+      },
+      {
+        "timestamp": "2025-02-25T09:07:00Z",
+        "type": "PagerDuty Alert Sent",
+        "source": "PagerDuty",
+        "description": "Pager sent for escalation.",
+        "alerts": [
+          {
+            "recipient": "Core Infrastructure",
+            "timestamp": "2025-02-25T09:07:00Z"
+          },
+          {
+            "recipient": "On-Call Engineers",
+            "timestamp": "2025-02-25T09:09:00Z"
+          },
+          {
+            "recipient": "Internal Applications",
+            "timestamp": "2025-02-25T09:11:00Z"
+          }
+        ]
+      },
+      {
+        "timestamp": "2025-02-25T09:07:00Z",
+        "type": "Teams Channel Created",
+        "source": "Microsoft Teams",
+        "description": "War room created to handle incident response.",
+        "teams_logs": {
+          "meeting_started": "12:06 PM",
+          "meeting_ended": "12:45 PM",
+          "joined_users": [
+            "Alice",
+            "Bob",
+            "Carol"
+          ],
+          "chat_log": [
+            "Alice: Investigating now.",
+            "Bob: Seeing the same in Splunk.",
+            "Carol: On a call with vendor."
+          ]
+        }
+      },
+      {
+        "timestamp": "2025-02-25T10:42:00Z",
+        "type": "Fix Implemented",
+        "source": "Internal",
+        "description": "Rollback deployed and DB config reset per resolution notes."
+      }
+    ],
+    "post_incident_summary": {
+      "summary": "The issue titled 'Auth Spike' caused disruptions until mitigated by internal teams.",
+      "root_cause": "A configuration error during deployment introduced the issue.",
+      "timeline": "Detected via logs, escalated by ticket volume, mitigated through rollback and patch.",
+      "impact": "Impacted users were unable to use key services during the outage window.",
+      "detection": "Triggered by monitoring and ticket surge.",
+      "response": "Incident war room initiated and engineers collaborated on a fix.",
+      "recovery": "Rollback and system reset resolved the issue.",
+      "prevention_plan": "Code review improvements and enhanced monitoring alerts."
+    }
+  },
+  {
+    "id": "mi-3fca2e92",
+    "title": "Login Timeout",
+    "date": "2025-01-01T12:01:00Z",
+    "description": "Login Timeout affecting user access or operations.",
+    "category": "Authorizations",
     "assignment_group": "Data Engineering",
     "timeline": [
       {
-        "timestamp": "2025-02-21T21:11:00Z",
+        "timestamp": "2025-01-01T11:59:00Z",
         "type": "Error Log Spike",
-        "source": "Dynatrace",
-        "description": "Monitoring showed repeated lock timeout warnings."
+        "source": "OpenSearch",
+        "description": "Automated monitoring detected unusual system behavior.",
+        "errors": [
+          "TimeoutException: DB connection pool exhausted",
+          "500 Internal Server Error at /auth/login",
+          "NullReferenceException at AuthController.cs:88"
+        ]
       },
       {
-        "timestamp": "2025-02-21T21:15:00Z",
+        "timestamp": "2025-01-01T12:01:00Z",
         "type": "Ticket Spike",
         "source": "ServiceNow",
-        "description": "11 tickets filed about data entry failures."
+        "description": "7 user-submitted tickets reporting the issue."
       },
       {
-        "timestamp": "2025-02-21T21:17:00Z",
+        "timestamp": "2025-01-01T12:03:00Z",
         "type": "MI Proposed",
         "source": "ServiceNow",
         "description": "MI proposed by Data Engineering."
       },
       {
-        "timestamp": "2025-02-21T21:18:00Z",
+        "timestamp": "2025-01-01T12:04:00Z",
         "type": "MI Approved",
         "source": "ServiceNow",
-        "description": "Approved for immediate MI handling."
+        "description": "MI approved by manager."
       },
       {
-        "timestamp": "2025-02-21T21:19:00Z",
+        "timestamp": "2025-01-01T12:05:00Z",
         "type": "Banner Posted",
         "source": "ServiceNow",
-        "description": "Banner posted: 'Some tools may experience errors while saving.'"
+        "description": "User-facing banner added about the outage."
       },
       {
-        "timestamp": "2025-02-21T21:20:00Z",
+        "timestamp": "2025-01-01T12:06:00Z",
+        "type": "PagerDuty Alert Sent",
+        "source": "PagerDuty",
+        "description": "Pager sent for escalation.",
+        "alerts": [
+          {
+            "recipient": "Bob Patel",
+            "timestamp": "2025-01-01T12:06:00Z"
+          },
+          {
+            "recipient": "Data Engineering",
+            "timestamp": "2025-01-01T12:08:00Z"
+          },
+          {
+            "recipient": "Alice Nguyen",
+            "timestamp": "2025-01-01T12:10:00Z"
+          }
+        ]
+      },
+      {
+        "timestamp": "2025-01-01T12:06:00Z",
         "type": "Teams Channel Created",
         "source": "Microsoft Teams",
-        "description": "War room created to address DB locking issues."
+        "description": "War room created to handle incident response.",
+        "teams_logs": {
+          "meeting_started": "12:06 PM",
+          "meeting_ended": "12:45 PM",
+          "joined_users": [
+            "Alice",
+            "Bob",
+            "Carol"
+          ],
+          "chat_log": [
+            "Alice: Investigating now.",
+            "Bob: Seeing the same in Splunk.",
+            "Carol: On a call with vendor."
+          ]
+        }
       },
       {
-        "timestamp": "2025-02-21T21:30:00Z",
+        "timestamp": "2025-01-01T14:47:00Z",
         "type": "Fix Implemented",
         "source": "Internal",
-        "description": "Killed stale transactions and restarted locked tables."
+        "description": "Rollback deployed and DB config reset per resolution notes."
       }
     ],
     "post_incident_summary": {
-      "summary": "Deadlock errors in the database caused failures across multiple internal tools.",
-      "root_cause": "Unoptimized queries during peak hours led to lock contention and table deadlocks.",
-      "timeline": "Errors surfaced at 9:11 PM. MI declared at 9:17 PM. Resolved at 9:30 PM by clearing stale locks.",
-      "impact": "Multiple internal teams could not use tools for data entry or report generation.",
-      "detection": "Dynatrace monitoring flagged lock timeout exceptions.",
-      "response": "MI initiated by Data Engineering. War room launched. Query analysis and lock clearance performed.",
-      "recovery": "Problem queries were killed and indexes rebuilt on affected tables.",
-      "prevention_plan": "Refactor queries. Add timeout logic. Conduct DB locking training for engineers."
+      "summary": "The issue titled 'Login Timeout' caused disruptions until mitigated by internal teams.",
+      "root_cause": "A configuration error during deployment introduced the issue.",
+      "timeline": "Detected via logs, escalated by ticket volume, mitigated through rollback and patch.",
+      "impact": "Impacted users were unable to use key services during the outage window.",
+      "detection": "Triggered by monitoring and ticket surge.",
+      "response": "Incident war room initiated and engineers collaborated on a fix.",
+      "recovery": "Rollback and system reset resolved the issue.",
+      "prevention_plan": "Code review improvements and enhanced monitoring alerts."
+    }
+  },
+  {
+    "id": "mi-a5cc4734",
+    "title": "Database Failure",
+    "date": "2025-03-17T09:27:00Z",
+    "description": "Database Failure affecting user access or operations.",
+    "category": "PIVIT",
+    "assignment_group": "Core Infrastructure",
+    "timeline": [
+      {
+        "timestamp": "2025-03-17T09:25:00Z",
+        "type": "Error Log Spike",
+        "source": "Dynatrace",
+        "description": "Automated monitoring detected unusual system behavior.",
+        "errors": [
+          "TimeoutException: DB connection pool exhausted",
+          "500 Internal Server Error at /auth/login",
+          "NullReferenceException at AuthController.cs:88"
+        ]
+      },
+      {
+        "timestamp": "2025-03-17T09:27:00Z",
+        "type": "Ticket Spike",
+        "source": "ServiceNow",
+        "description": "23 user-submitted tickets reporting the issue."
+      },
+      {
+        "timestamp": "2025-03-17T09:29:00Z",
+        "type": "MI Proposed",
+        "source": "ServiceNow",
+        "description": "MI proposed by Core Infrastructure."
+      },
+      {
+        "timestamp": "2025-03-17T09:30:00Z",
+        "type": "MI Approved",
+        "source": "ServiceNow",
+        "description": "MI approved by manager."
+      },
+      {
+        "timestamp": "2025-03-17T09:31:00Z",
+        "type": "Banner Posted",
+        "source": "ServiceNow",
+        "description": "User-facing banner added about the outage."
+      },
+      {
+        "timestamp": "2025-03-17T09:32:00Z",
+        "type": "PagerDuty Alert Sent",
+        "source": "PagerDuty",
+        "description": "Pager sent for escalation.",
+        "alerts": [
+          {
+            "recipient": "Bob Patel",
+            "timestamp": "2025-03-17T09:32:00Z"
+          },
+          {
+            "recipient": "Core Infrastructure",
+            "timestamp": "2025-03-17T09:34:00Z"
+          },
+          {
+            "recipient": "Communications Team",
+            "timestamp": "2025-03-17T09:36:00Z"
+          }
+        ]
+      },
+      {
+        "timestamp": "2025-03-17T09:32:00Z",
+        "type": "Teams Channel Created",
+        "source": "Microsoft Teams",
+        "description": "War room created to handle incident response.",
+        "teams_logs": {
+          "meeting_started": "12:06 PM",
+          "meeting_ended": "12:45 PM",
+          "joined_users": [
+            "Alice",
+            "Bob",
+            "Carol"
+          ],
+          "chat_log": [
+            "Alice: Investigating now.",
+            "Bob: Seeing the same in Splunk.",
+            "Carol: On a call with vendor."
+          ]
+        }
+      },
+      {
+        "timestamp": "2025-03-17T10:09:00Z",
+        "type": "Fix Implemented",
+        "source": "Internal",
+        "description": "Rollback deployed and DB config reset per resolution notes."
+      }
+    ],
+    "post_incident_summary": {
+      "summary": "The issue titled 'Database Failure' caused disruptions until mitigated by internal teams.",
+      "root_cause": "A configuration error during deployment introduced the issue.",
+      "timeline": "Detected via logs, escalated by ticket volume, mitigated through rollback and patch.",
+      "impact": "Impacted users were unable to use key services during the outage window.",
+      "detection": "Triggered by monitoring and ticket surge.",
+      "response": "Incident war room initiated and engineers collaborated on a fix.",
+      "recovery": "Rollback and system reset resolved the issue.",
+      "prevention_plan": "Code review improvements and enhanced monitoring alerts."
+    }
+  },
+  {
+    "id": "mi-a78c0baf",
+    "title": "Login Timeout",
+    "date": "2025-02-27T15:37:00Z",
+    "description": "Login Timeout affecting user access or operations.",
+    "category": "Member Website",
+    "assignment_group": "API Services",
+    "timeline": [
+      {
+        "timestamp": "2025-02-27T15:35:00Z",
+        "type": "Error Log Spike",
+        "source": "OpenSearch",
+        "description": "Automated monitoring detected unusual system behavior.",
+        "errors": [
+          "TimeoutException: DB connection pool exhausted",
+          "500 Internal Server Error at /auth/login",
+          "NullReferenceException at AuthController.cs:88"
+        ]
+      },
+      {
+        "timestamp": "2025-02-27T15:37:00Z",
+        "type": "Ticket Spike",
+        "source": "ServiceNow",
+        "description": "18 user-submitted tickets reporting the issue."
+      },
+      {
+        "timestamp": "2025-02-27T15:39:00Z",
+        "type": "MI Proposed",
+        "source": "ServiceNow",
+        "description": "MI proposed by API Services."
+      },
+      {
+        "timestamp": "2025-02-27T15:40:00Z",
+        "type": "MI Approved",
+        "source": "ServiceNow",
+        "description": "MI approved by manager."
+      },
+      {
+        "timestamp": "2025-02-27T15:41:00Z",
+        "type": "Banner Posted",
+        "source": "ServiceNow",
+        "description": "User-facing banner added about the outage."
+      },
+      {
+        "timestamp": "2025-02-27T15:42:00Z",
+        "type": "PagerDuty Alert Sent",
+        "source": "PagerDuty",
+        "description": "Pager sent for escalation.",
+        "alerts": [
+          {
+            "recipient": "Alice Nguyen",
+            "timestamp": "2025-02-27T15:42:00Z"
+          },
+          {
+            "recipient": "Charlie Martinez",
+            "timestamp": "2025-02-27T15:44:00Z"
+          },
+          {
+            "recipient": "Internal Applications",
+            "timestamp": "2025-02-27T15:46:00Z"
+          },
+          {
+            "recipient": "Core Infrastructure",
+            "timestamp": "2025-02-27T15:48:00Z"
+          }
+        ]
+      },
+      {
+        "timestamp": "2025-02-27T15:42:00Z",
+        "type": "Teams Channel Created",
+        "source": "Microsoft Teams",
+        "description": "War room created to handle incident response.",
+        "teams_logs": {
+          "meeting_started": "12:06 PM",
+          "meeting_ended": "12:45 PM",
+          "joined_users": [
+            "Alice",
+            "Bob",
+            "Carol"
+          ],
+          "chat_log": [
+            "Alice: Investigating now.",
+            "Bob: Seeing the same in Splunk.",
+            "Carol: On a call with vendor."
+          ]
+        }
+      },
+      {
+        "timestamp": "2025-02-27T16:42:00Z",
+        "type": "Fix Implemented",
+        "source": "Internal",
+        "description": "Rollback deployed and DB config reset per resolution notes."
+      }
+    ],
+    "post_incident_summary": {
+      "summary": "The issue titled 'Login Timeout' caused disruptions until mitigated by internal teams.",
+      "root_cause": "A configuration error during deployment introduced the issue.",
+      "timeline": "Detected via logs, escalated by ticket volume, mitigated through rollback and patch.",
+      "impact": "Impacted users were unable to use key services during the outage window.",
+      "detection": "Triggered by monitoring and ticket surge.",
+      "response": "Incident war room initiated and engineers collaborated on a fix.",
+      "recovery": "Rollback and system reset resolved the issue.",
+      "prevention_plan": "Code review improvements and enhanced monitoring alerts."
+    }
+  },
+  {
+    "id": "mi-b5970d34",
+    "title": "Database Spike",
+    "date": "2025-04-08T14:55:00Z",
+    "description": "Database Spike affecting user access or operations.",
+    "category": "Member Website",
+    "assignment_group": "Communications Team",
+    "timeline": [
+      {
+        "timestamp": "2025-04-08T14:53:00Z",
+        "type": "Error Log Spike",
+        "source": "Splunk",
+        "description": "Automated monitoring detected unusual system behavior.",
+        "errors": [
+          "TimeoutException: DB connection pool exhausted",
+          "500 Internal Server Error at /auth/login",
+          "NullReferenceException at AuthController.cs:88"
+        ]
+      },
+      {
+        "timestamp": "2025-04-08T14:55:00Z",
+        "type": "Ticket Spike",
+        "source": "ServiceNow",
+        "description": "14 user-submitted tickets reporting the issue."
+      },
+      {
+        "timestamp": "2025-04-08T14:57:00Z",
+        "type": "MI Proposed",
+        "source": "ServiceNow",
+        "description": "MI proposed by Communications Team."
+      },
+      {
+        "timestamp": "2025-04-08T14:58:00Z",
+        "type": "MI Approved",
+        "source": "ServiceNow",
+        "description": "MI approved by manager."
+      },
+      {
+        "timestamp": "2025-04-08T14:59:00Z",
+        "type": "Banner Posted",
+        "source": "ServiceNow",
+        "description": "User-facing banner added about the outage."
+      },
+      {
+        "timestamp": "2025-04-08T15:00:00Z",
+        "type": "PagerDuty Alert Sent",
+        "source": "PagerDuty",
+        "description": "Pager sent for escalation.",
+        "alerts": [
+          {
+            "recipient": "Internal Applications",
+            "timestamp": "2025-04-08T15:00:00Z"
+          },
+          {
+            "recipient": "On-Call Engineers",
+            "timestamp": "2025-04-08T15:02:00Z"
+          },
+          {
+            "recipient": "Charlie Martinez",
+            "timestamp": "2025-04-08T15:04:00Z"
+          },
+          {
+            "recipient": "Bob Patel",
+            "timestamp": "2025-04-08T15:06:00Z"
+          }
+        ]
+      },
+      {
+        "timestamp": "2025-04-08T15:00:00Z",
+        "type": "Teams Channel Created",
+        "source": "Microsoft Teams",
+        "description": "War room created to handle incident response.",
+        "teams_logs": {
+          "meeting_started": "12:06 PM",
+          "meeting_ended": "12:45 PM",
+          "joined_users": [
+            "Alice",
+            "Bob",
+            "Carol"
+          ],
+          "chat_log": [
+            "Alice: Investigating now.",
+            "Bob: Seeing the same in Splunk.",
+            "Carol: On a call with vendor."
+          ]
+        }
+      },
+      {
+        "timestamp": "2025-04-08T16:59:00Z",
+        "type": "Fix Implemented",
+        "source": "Internal",
+        "description": "Rollback deployed and DB config reset per resolution notes."
+      }
+    ],
+    "post_incident_summary": {
+      "summary": "The issue titled 'Database Spike' caused disruptions until mitigated by internal teams.",
+      "root_cause": "A configuration error during deployment introduced the issue.",
+      "timeline": "Detected via logs, escalated by ticket volume, mitigated through rollback and patch.",
+      "impact": "Impacted users were unable to use key services during the outage window.",
+      "detection": "Triggered by monitoring and ticket surge.",
+      "response": "Incident war room initiated and engineers collaborated on a fix.",
+      "recovery": "Rollback and system reset resolved the issue.",
+      "prevention_plan": "Code review improvements and enhanced monitoring alerts."
+    }
+  },
+  {
+    "id": "mi-5ee79fff",
+    "title": "Auth Outage",
+    "date": "2025-01-12T16:23:00Z",
+    "description": "Auth Outage affecting user access or operations.",
+    "category": "Database",
+    "assignment_group": "Core Infrastructure",
+    "timeline": [
+      {
+        "timestamp": "2025-01-12T16:21:00Z",
+        "type": "Error Log Spike",
+        "source": "Splunk",
+        "description": "Automated monitoring detected unusual system behavior.",
+        "errors": [
+          "TimeoutException: DB connection pool exhausted",
+          "500 Internal Server Error at /auth/login",
+          "NullReferenceException at AuthController.cs:88"
+        ]
+      },
+      {
+        "timestamp": "2025-01-12T16:23:00Z",
+        "type": "Ticket Spike",
+        "source": "ServiceNow",
+        "description": "21 user-submitted tickets reporting the issue."
+      },
+      {
+        "timestamp": "2025-01-12T16:25:00Z",
+        "type": "MI Proposed",
+        "source": "ServiceNow",
+        "description": "MI proposed by Core Infrastructure."
+      },
+      {
+        "timestamp": "2025-01-12T16:26:00Z",
+        "type": "MI Approved",
+        "source": "ServiceNow",
+        "description": "MI approved by manager."
+      },
+      {
+        "timestamp": "2025-01-12T16:27:00Z",
+        "type": "Banner Posted",
+        "source": "ServiceNow",
+        "description": "User-facing banner added about the outage."
+      },
+      {
+        "timestamp": "2025-01-12T16:28:00Z",
+        "type": "PagerDuty Alert Sent",
+        "source": "PagerDuty",
+        "description": "Pager sent for escalation.",
+        "alerts": [
+          {
+            "recipient": "Alice Nguyen",
+            "timestamp": "2025-01-12T16:28:00Z"
+          },
+          {
+            "recipient": "Communications Team",
+            "timestamp": "2025-01-12T16:30:00Z"
+          }
+        ]
+      },
+      {
+        "timestamp": "2025-01-12T16:28:00Z",
+        "type": "Teams Channel Created",
+        "source": "Microsoft Teams",
+        "description": "War room created to handle incident response.",
+        "teams_logs": {
+          "meeting_started": "12:06 PM",
+          "meeting_ended": "12:45 PM",
+          "joined_users": [
+            "Alice",
+            "Bob",
+            "Carol"
+          ],
+          "chat_log": [
+            "Alice: Investigating now.",
+            "Bob: Seeing the same in Splunk.",
+            "Carol: On a call with vendor."
+          ]
+        }
+      },
+      {
+        "timestamp": "2025-01-12T17:10:00Z",
+        "type": "Fix Implemented",
+        "source": "Internal",
+        "description": "Rollback deployed and DB config reset per resolution notes."
+      }
+    ],
+    "post_incident_summary": {
+      "summary": "The issue titled 'Auth Outage' caused disruptions until mitigated by internal teams.",
+      "root_cause": "A configuration error during deployment introduced the issue.",
+      "timeline": "Detected via logs, escalated by ticket volume, mitigated through rollback and patch.",
+      "impact": "Impacted users were unable to use key services during the outage window.",
+      "detection": "Triggered by monitoring and ticket surge.",
+      "response": "Incident war room initiated and engineers collaborated on a fix.",
+      "recovery": "Rollback and system reset resolved the issue.",
+      "prevention_plan": "Code review improvements and enhanced monitoring alerts."
+    }
+  },
+  {
+    "id": "mi-3f8a3120",
+    "title": "Auth Timeout",
+    "date": "2025-04-05T09:16:00Z",
+    "description": "Auth Timeout affecting user access or operations.",
+    "category": "Database",
+    "assignment_group": "Data Engineering",
+    "timeline": [
+      {
+        "timestamp": "2025-04-05T09:14:00Z",
+        "type": "Error Log Spike",
+        "source": "Splunk",
+        "description": "Automated monitoring detected unusual system behavior.",
+        "errors": [
+          "TimeoutException: DB connection pool exhausted",
+          "500 Internal Server Error at /auth/login",
+          "NullReferenceException at AuthController.cs:88"
+        ]
+      },
+      {
+        "timestamp": "2025-04-05T09:16:00Z",
+        "type": "Ticket Spike",
+        "source": "ServiceNow",
+        "description": "19 user-submitted tickets reporting the issue."
+      },
+      {
+        "timestamp": "2025-04-05T09:18:00Z",
+        "type": "MI Proposed",
+        "source": "ServiceNow",
+        "description": "MI proposed by Data Engineering."
+      },
+      {
+        "timestamp": "2025-04-05T09:19:00Z",
+        "type": "MI Approved",
+        "source": "ServiceNow",
+        "description": "MI approved by manager."
+      },
+      {
+        "timestamp": "2025-04-05T09:20:00Z",
+        "type": "Banner Posted",
+        "source": "ServiceNow",
+        "description": "User-facing banner added about the outage."
+      },
+      {
+        "timestamp": "2025-04-05T09:21:00Z",
+        "type": "PagerDuty Alert Sent",
+        "source": "PagerDuty",
+        "description": "Pager sent for escalation.",
+        "alerts": [
+          {
+            "recipient": "Data Engineering",
+            "timestamp": "2025-04-05T09:21:00Z"
+          },
+          {
+            "recipient": "Alice Nguyen",
+            "timestamp": "2025-04-05T09:23:00Z"
+          }
+        ]
+      },
+      {
+        "timestamp": "2025-04-05T09:21:00Z",
+        "type": "Teams Channel Created",
+        "source": "Microsoft Teams",
+        "description": "War room created to handle incident response.",
+        "teams_logs": {
+          "meeting_started": "12:06 PM",
+          "meeting_ended": "12:45 PM",
+          "joined_users": [
+            "Alice",
+            "Bob",
+            "Carol"
+          ],
+          "chat_log": [
+            "Alice: Investigating now.",
+            "Bob: Seeing the same in Splunk.",
+            "Carol: On a call with vendor."
+          ]
+        }
+      },
+      {
+        "timestamp": "2025-04-05T10:35:00Z",
+        "type": "Fix Implemented",
+        "source": "Internal",
+        "description": "Rollback deployed and DB config reset per resolution notes."
+      }
+    ],
+    "post_incident_summary": {
+      "summary": "The issue titled 'Auth Timeout' caused disruptions until mitigated by internal teams.",
+      "root_cause": "A configuration error during deployment introduced the issue.",
+      "timeline": "Detected via logs, escalated by ticket volume, mitigated through rollback and patch.",
+      "impact": "Impacted users were unable to use key services during the outage window.",
+      "detection": "Triggered by monitoring and ticket surge.",
+      "response": "Incident war room initiated and engineers collaborated on a fix.",
+      "recovery": "Rollback and system reset resolved the issue.",
+      "prevention_plan": "Code review improvements and enhanced monitoring alerts."
+    }
+  },
+  {
+    "id": "mi-9b54b0c5",
+    "title": "Login Outage",
+    "date": "2025-03-08T12:20:00Z",
+    "description": "Login Outage affecting user access or operations.",
+    "category": "Database",
+    "assignment_group": "Core Infrastructure",
+    "timeline": [
+      {
+        "timestamp": "2025-03-08T12:18:00Z",
+        "type": "Error Log Spike",
+        "source": "Dynatrace",
+        "description": "Automated monitoring detected unusual system behavior.",
+        "errors": [
+          "TimeoutException: DB connection pool exhausted",
+          "500 Internal Server Error at /auth/login",
+          "NullReferenceException at AuthController.cs:88"
+        ]
+      },
+      {
+        "timestamp": "2025-03-08T12:20:00Z",
+        "type": "Ticket Spike",
+        "source": "ServiceNow",
+        "description": "5 user-submitted tickets reporting the issue."
+      },
+      {
+        "timestamp": "2025-03-08T12:22:00Z",
+        "type": "MI Proposed",
+        "source": "ServiceNow",
+        "description": "MI proposed by Core Infrastructure."
+      },
+      {
+        "timestamp": "2025-03-08T12:23:00Z",
+        "type": "MI Approved",
+        "source": "ServiceNow",
+        "description": "MI approved by manager."
+      },
+      {
+        "timestamp": "2025-03-08T12:24:00Z",
+        "type": "Banner Posted",
+        "source": "ServiceNow",
+        "description": "User-facing banner added about the outage."
+      },
+      {
+        "timestamp": "2025-03-08T12:25:00Z",
+        "type": "PagerDuty Alert Sent",
+        "source": "PagerDuty",
+        "description": "Pager sent for escalation.",
+        "alerts": [
+          {
+            "recipient": "Charlie Martinez",
+            "timestamp": "2025-03-08T12:25:00Z"
+          },
+          {
+            "recipient": "Communications Team",
+            "timestamp": "2025-03-08T12:27:00Z"
+          },
+          {
+            "recipient": "Core Infrastructure",
+            "timestamp": "2025-03-08T12:29:00Z"
+          }
+        ]
+      },
+      {
+        "timestamp": "2025-03-08T12:25:00Z",
+        "type": "Teams Channel Created",
+        "source": "Microsoft Teams",
+        "description": "War room created to handle incident response.",
+        "teams_logs": {
+          "meeting_started": "12:06 PM",
+          "meeting_ended": "12:45 PM",
+          "joined_users": [
+            "Alice",
+            "Bob",
+            "Carol"
+          ],
+          "chat_log": [
+            "Alice: Investigating now.",
+            "Bob: Seeing the same in Splunk.",
+            "Carol: On a call with vendor."
+          ]
+        }
+      },
+      {
+        "timestamp": "2025-03-08T14:58:00Z",
+        "type": "Fix Implemented",
+        "source": "Internal",
+        "description": "Rollback deployed and DB config reset per resolution notes."
+      }
+    ],
+    "post_incident_summary": {
+      "summary": "The issue titled 'Login Outage' caused disruptions until mitigated by internal teams.",
+      "root_cause": "A configuration error during deployment introduced the issue.",
+      "timeline": "Detected via logs, escalated by ticket volume, mitigated through rollback and patch.",
+      "impact": "Impacted users were unable to use key services during the outage window.",
+      "detection": "Triggered by monitoring and ticket surge.",
+      "response": "Incident war room initiated and engineers collaborated on a fix.",
+      "recovery": "Rollback and system reset resolved the issue.",
+      "prevention_plan": "Code review improvements and enhanced monitoring alerts."
     }
   }
 ]

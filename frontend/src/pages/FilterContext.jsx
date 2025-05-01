@@ -6,6 +6,7 @@ const allEventTypes = [
   "MI Proposed",
   "MI Approved",
   "Banner Posted",
+  "PagerDuty Alert Sent",
   "Teams Channel Created",
   "Fix Implemented",
 ];
@@ -16,11 +17,18 @@ const allCategories = [
   "Database"
 ];
 
+const allDurations = [
+  "<1hr",
+  "1-2hr",
+  "2+hr"
+];
+
 const FilterContext = createContext();
 
 export function FilterProvider({ children }) {
   const [activeTypes, setActiveTypes] = useState(allEventTypes);
   const [activeCategories, setActiveCategories] = useState(allCategories);
+  const [activeDurations, setActiveDurations] = useState(allDurations);
 
   const toggleType = (type) => {
     setActiveTypes((prev) =>
@@ -38,6 +46,14 @@ export function FilterProvider({ children }) {
     );
   };
 
+  const toggleDuration = (range) => {
+    setActiveDurations((prev) =>
+      prev.includes(range)
+        ? prev.filter((d) => d !== range)
+        : [...prev, range]
+    );
+  };
+
   return (
     <FilterContext.Provider
       value={{
@@ -46,7 +62,10 @@ export function FilterProvider({ children }) {
         allEventTypes,
         activeCategories,
         toggleCategory,
-        allCategories
+        allCategories,
+        activeDurations,
+        toggleDuration,
+        allDurations
       }}
     >
       {children}
