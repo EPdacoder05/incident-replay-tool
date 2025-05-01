@@ -1,63 +1,70 @@
 [
-    {
-      "timestamp": "2025-04-01T12:00:00Z",
-      "type": "Ticket Spike",
-      "source": "ServiceNow",
-      "description": "23 user-submitted tickets reporting login issues."
-    },
-    {
-      "timestamp": "2025-04-01T12:03:00Z",
-      "type": "MI Proposed",
-      "source": "ServiceNow",
-      "description": "Major Incident proposed by engineer based on ticket surge."
-    },
-    {
-      "timestamp": "2025-04-01T12:04:00Z",
-      "type": "Banner Posted",
-      "source": "ServiceNow",
-      "description": "User-facing banner added: 'We are aware of a login issue and investigating.'"
-    },
-    {
-      "timestamp": "2025-04-01T12:05:00Z",
-      "type": "MI Approved",
-      "source": "ServiceNow",
-      "description": "Manager approved the incident as a Major Incident (MI)."
-    },
-    {
-      "timestamp": "2025-04-01T12:06:00Z",
-      "type": "Teams Channel Created",
-      "source": "Microsoft Teams",
-      "description": "War room channel and call created for MI discussion."
-    },
-    {
-      "timestamp": "2025-04-01T12:07:00Z",
-      "type": "Page Sent",
-      "source": "PagerDuty",
-      "description": "Engineering on-call team paged for login-service outage."
-    },
-    {
-      "timestamp": "2025-04-01T12:10:00Z",
-      "type": "Alert Spike",
-      "source": "Splunk",
-      "description": "Login-service logs show repeated authentication errors."
-    },
-    {
-      "timestamp": "2025-04-01T12:12:00Z",
-      "type": "Monitoring Spike",
-      "source": "Dynatrace",
-      "description": "Login-service latency exceeds 1.5s threshold."
-    },
-    {
-      "timestamp": "2025-04-01T12:15:00Z",
-      "type": "Fix Implemented",
-      "source": "Internal",
-      "description": "Rollback of deployment from earlier that day completed."
-    },
-    {
-      "timestamp": "2025-04-01T12:20:00Z",
-      "type": "Issue Resolved",
-      "source": "Internal",
-      "description": "All login traffic restored to normal, confirmed by metrics and user tests."
-    }
-  ]
-  
+  {
+    "id": 1,
+    "title": "Login Service Outage - April 1, 2025",
+    "description": "Users were unable to log in due to an authentication issue.",
+    "timestamp": "2025-04-01T12:00:00Z",
+    "events": [
+      {
+        "timestamp": "2025-04-01T12:00:00Z",
+        "type": "Ticket Spike",
+        "source": "ServiceNow",
+        "description": "23 user-submitted tickets reporting login issues."
+      },
+      {
+        "timestamp": "2025-04-01T12:03:00Z",
+        "type": "MI Proposed",
+        "source": "ServiceNow",
+        "description": "Major Incident proposed by engineer based on ticket surge."
+      },
+      {
+        "timestamp": "2025-04-01T12:04:00Z",
+        "type": "Banner Posted",
+        "source": "ServiceNow",
+        "description": "User-facing banner added: 'We are aware of a login issue and investigating.'"
+      },
+      {
+        "timestamp": "2025-04-01T12:05:00Z",
+        "type": "MI Approved",
+        "source": "ServiceNow",
+        "description": "Manager approved the incident as a Major Incident (MI)."
+      },
+      {
+        "timestamp": "2025-04-01T12:06:00Z",
+        "type": "Teams Channel Created",
+        "source": "Microsoft Teams",
+        "description": "War room channel and call created for MI discussion."
+      },
+      {
+        "timestamp": "2025-04-01T12:07:00Z",
+        "type": "Page Sent",
+        "source": "PagerDuty",
+        "description": "Engineering on-call team paged for login-service outage."
+      },
+      {
+        "timestamp": "2025-04-01T12:10:00Z",
+        "type": "Alert Spike",
+        "source": "Splunk",
+        "description": "Login-service logs show repeated authentication errors."
+      },
+      {
+        "timestamp": "2025-04-01T12:12:00Z",
+        "type": "Monitoring Spike",
+        "source": "Dynatrace",
+        "description": "Login-service latency exceeds 1.5s threshold."
+      },
+      {
+        "timestamp": "2025-04-01T12:15:00Z",
+        "type": "Fix Implemented",
+        "source": "Internal",
+        "description": "Rollback of deployment from earlier that day completed."
+      },
+      {
+        "timestamp": "2025-04-01T12:20:00Z",
+        "type": "Monitoring Clear",
+        "source": "Dynatrace",
+        "description": "Latency returned to normal. No errors detected."
+      }
+    ]
+  }
+]
