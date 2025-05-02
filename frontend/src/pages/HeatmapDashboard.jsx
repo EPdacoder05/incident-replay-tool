@@ -108,7 +108,7 @@ function HeatmapDashboard() {
 
   return (
     <div className="min-h-screen bg-gray-50 p-6 font-sans">
-      <div className="w-full bg-gradient-to-r from-quantum-yellow via-quantum-green to-quantum-yellow py-3 mb-6 rounded shadow">
+      <div className="w-full bg-quantum-green py-3 mb-6 rounded shadow">
         <h1 className="text-2xl font-bold text-white text-center">Incident Heatmap</h1>
       </div>
 

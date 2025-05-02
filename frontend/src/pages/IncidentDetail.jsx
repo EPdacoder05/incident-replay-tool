@@ -1,7 +1,8 @@
 import { useParams, Link } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import TimelineItem from './TimelineItem';
 import TimelineFilter from './TimelineFilter';
+import html2pdf from 'html2pdf.js';
 
 function IncidentDetail() {
   const { id } = useParams();
@@ -16,6 +17,8 @@ function IncidentDetail() {
   const [editedFix, setEditedFix] = useState('');
   const [generating, setGenerating] = useState(false);
 
+  const printRef = useRef();
+
   useEffect(() => {
     fetch('/mockData.json')
       .then((res) => res.json())
@@ -23,13 +26,18 @@ function IncidentDetail() {
         const found = data.find((inc) => inc.id === id);
         if (found) {
           setIncident(found);
+
           const types = Array.from(new Set(found.timeline.map(e => e.type)));
           setAllTypes(types);
-          setActiveTypes(types);
+
+          if (activeTypes.length === 0) {
+            setActiveTypes(types);
+          }
+
           setEditedSummary(found.post_incident_summary || {});
         }
       });
-  }, [id]);
+  }, [id, activeTypes]);
 
   const toggleType = (type) => {
     setActiveTypes((prev) =>
@@ -61,28 +69,34 @@ function IncidentDetail() {
 
   const simulateAIResponse = () => {
     setGenerating(true);
-
-    // Simulate delay + mock AI summary generation
     setTimeout(() => {
       const mockAI = {
-        root_cause:
-          'A configuration error during the morning deployment caused authentication failures across services.',
-        detection:
-          'Dynatrace and Splunk logs began showing elevated login error rates at 12:02 PM. MI was proposed at 12:03 PM (INC1057).',
-        response:
-          'Teams channel was created at 12:04 PM. On-call engineers and infrastructure teams were paged immediately.',
-        timeline:
-          '12:02 - Error spike detected\n12:03 - MI proposed (INC1057)\n12:04 - War room created\n12:06 - Rollback initiated\n12:15 - Fix implemented'
+        root_cause: 'A configuration error during the morning deployment caused authentication failures across services.',
+        detection: 'Dynatrace and Splunk logs began showing elevated login error rates at 12:02 PM. MI was proposed at 12:03 PM (INC1057).',
+        response: 'Teams channel was created at 12:04 PM. On-call engineers and infrastructure teams were paged immediately.',
+        timeline: '12:02 - Error spike detected\n12:03 - MI proposed (INC1057)\n12:04 - War room created\n12:06 - Rollback initiated\n12:15 - Fix implemented'
       };
-
-      setEditedSummary((prev) => ({
-        ...prev,
-        ...mockAI
-      }));
-
+      setEditedSummary((prev) => ({ ...prev, ...mockAI }));
       setEditSummary(true);
       setGenerating(false);
     }, 2000);
+  };
+
+  const exportToPDF = () => {
+    if (!incident || !printRef.current) return;
+
+    const filename = `MI-${incident.title.replace(/\s+/g, '-').toLowerCase()}.pdf`;
+
+    html2pdf()
+      .set({
+        margin: 0.5,
+        filename,
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: { scale: 2 },
+        jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+      })
+      .from(printRef.current)
+      .save();
   };
 
   if (!incident) return <div className="p-6">Loading...</div>;
@@ -90,7 +104,7 @@ function IncidentDetail() {
   return (
     <div className="min-h-screen bg-gray-50 p-6 font-sans">
       {/* Header */}
-      <div className="w-full bg-gradient-to-r from-quantum-yellow via-quantum-green to-quantum-yellow py-3 mb-6 rounded shadow">
+      <div className="w-full bg-quantum-green py-3 mb-6 rounded shadow">
         <h1 className="text-2xl font-bold text-white text-center">Incident Detail</h1>
       </div>
 
@@ -106,8 +120,16 @@ function IncidentDetail() {
         </div>
 
         {/* Main Content */}
-        <div className="lg:w-3/4 w-full space-y-6">
-          <Link to="/" className="text-blue-600 hover:underline text-sm">&larr; Back</Link>
+        <div className="lg:w-3/4 w-full space-y-6" ref={printRef}>
+          <div className="flex justify-between items-center">
+            <Link to="/" className="text-blue-600 hover:underline text-sm">&larr; Back</Link>
+            <button
+              onClick={exportToPDF}
+              className="bg-quantum-green text-white px-4 py-2 rounded hover:bg-green-700 transition text-sm"
+            >
+              Export to PDF
+            </button>
+          </div>
 
           <h2 className="text-xl font-bold text-gray-800">{incident.title}</h2>
           <p className="text-gray-700 mb-1">{incident.description}</p>
@@ -185,7 +207,7 @@ function IncidentDetail() {
                 if (event.type === 'Fix Implemented') {
                   return (
                     <div key={idx} className="bg-white border border-gray-200 rounded shadow p-4 mb-4 relative">
-                      <div className="absolute top-0 bottom-0 left-0 w-1 rounded-l bg-gradient-to-b from-quantum-yellow via-quantum-green to-quantum-yellow" />
+                      <div className="absolute top-0 bottom-0 left-0 w-1 rounded-l bg-quantum-green" />
                       <div className="flex justify-between items-start">
                         <div className="w-full">
                           <h3 className="text-md font-semibold text-quantum-green mb-1">{event.type}</h3>

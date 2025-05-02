@@ -9,8 +9,8 @@ function TimelineItem({ event }) {
   return (
     <div className="bg-white border border-gray-200 rounded shadow p-4 mb-4 relative">
       <div className="pl-4 border-l-4 border-transparent">
-        {/* Gradient stripe */}
-        <div className="absolute top-0 bottom-0 left-0 w-1 rounded-l bg-gradient-to-b from-quantum-yellow via-quantum-green to-quantum-yellow" />
+        {/* Solid stripe */}
+        <div className="absolute top-0 bottom-0 left-0 w-1 rounded-l bg-quantum-green" />
   
         <div className="flex justify-between items-start">
           <div>

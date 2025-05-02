@@ -11,38 +11,30 @@ const allEventTypes = [
   "Fix Implemented",
 ];
 
-const allCategories = [
-  "Member Website",
-  "Authorizations",
-  "Database"
-];
-
-const allDurations = [
-  "<1hr",
-  "1-2hr",
-  "2+hr"
-];
+const allDurations = ["<1hr", "1-2hr", "2+hr"];
 
 const FilterContext = createContext();
 
 export function FilterProvider({ children }) {
-  const [activeTypes, setActiveTypes] = useState(allEventTypes);
-  const [activeCategories, setActiveCategories] = useState(allCategories);
-  const [activeDurations, setActiveDurations] = useState(allDurations);
+  const [allCategories, setAllCategories] = useState([]);
+  const [activeCategories, setActiveCategories] = useState([]);
 
-  const toggleType = (type) => {
-    setActiveTypes((prev) =>
-      prev.includes(type)
-        ? prev.filter((t) => t !== type)
-        : [...prev, type]
-    );
-  };
+  const [activeTypes, setActiveTypes] = useState(allEventTypes);
+  const [activeDurations, setActiveDurations] = useState(allDurations);
 
   const toggleCategory = (category) => {
     setActiveCategories((prev) =>
       prev.includes(category)
         ? prev.filter((c) => c !== category)
         : [...prev, category]
+    );
+  };
+
+  const toggleType = (type) => {
+    setActiveTypes((prev) =>
+      prev.includes(type)
+        ? prev.filter((t) => t !== type)
+        : [...prev, type]
     );
   };
 
@@ -54,18 +46,27 @@ export function FilterProvider({ children }) {
     );
   };
 
+  const selectAllCategories = () => setActiveCategories(allCategories);
+  const clearAllCategories = () => setActiveCategories([]);
+
   return (
     <FilterContext.Provider
       value={{
+        allEventTypes,
         activeTypes,
         toggleType,
-        allEventTypes,
-        activeCategories,
-        toggleCategory,
+
         allCategories,
+        setAllCategories,
+        activeCategories,
+        setActiveCategories,
+        toggleCategory,
+        selectAllCategories,
+        clearAllCategories,
+
+        allDurations,
         activeDurations,
-        toggleDuration,
-        allDurations
+        toggleDuration
       }}
     >
       {children}
