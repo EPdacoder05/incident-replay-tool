@@ -11,8 +11,8 @@ The **Incident Replay Tool** is a local web application built to help Quantum He
   - Dynatrace, Splunk, and OpenSearch monitoring spikes
   - Microsoft Teams room creation and war room activation
 - ✅ **Quantum Health Branding**
-  - Green/yellow gradient header
-  - Custom category badges
+  - Green header, card striping
+  - Custom green category badges
   - Duration-based status indicators (green/yellow/red)
 - ✅ **Post-Incident Summary Preview**
   - Expandable summary on homepage
@@ -36,7 +36,6 @@ The **Incident Replay Tool** is a local web application built to help Quantum He
 
 ✅ Mock data in use  
 🧠 Post-incident summary will soon be powered by AI  
-🔥 Optional features like heatmaps and PDF export coming soon
 
 ---
 
@@ -47,6 +46,8 @@ The **Incident Replay Tool** is a local web application built to help Quantum He
 cd frontend
 npm install
 npm run dev
+
+### Backend
 
 cd backend
 python -m venv env
