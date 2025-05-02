@@ -1,6 +1,13 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 function NavBar() {
+  const location = useLocation();
+
+  const linkStyle = (path) =>
+    `text-sm font-semibold text-green-700 hover:underline ${
+      location.pathname === path ? 'underline' : ''
+    }`;
+
   return (
     <header className="bg-white shadow mb-6">
       <div className="max-w-6xl mx-auto flex items-center justify-between px-4 py-3">
@@ -15,9 +22,15 @@ function NavBar() {
             className="h-8"
           />
         </a>
-        <Link to="/" className="text-green-700 font-semibold hover:underline">
-          Incident Replay Tool
-        </Link>
+
+        <div className="flex items-center gap-6">
+          <Link to="/" className={linkStyle('/')}>
+            Incident Replay Tool
+          </Link>
+          <Link to="/alerts" className={linkStyle('/alerts')}>
+            Error Monitor
+          </Link>
+        </div>
       </div>
     </header>
   );
