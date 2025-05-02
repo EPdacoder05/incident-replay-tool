@@ -24,8 +24,9 @@ function Home() {
     fetch('/mockData.json')
       .then((res) => res.json())
       .then((data) => {
-        setIncidents(data);
-        setFiltered(data);
+        const sorted = [...data].sort((a, b) => new Date(b.date) - new Date(a.date));
+        setIncidents(sorted);
+        setFiltered(sorted);
 
         const years = Array.from(
           new Set(data.map(i => new Date(i.date).getFullYear()))
