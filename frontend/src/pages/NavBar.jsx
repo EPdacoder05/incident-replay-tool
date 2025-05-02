@@ -30,6 +30,10 @@ function NavBar() {
           <Link to="/alerts" className={linkStyle('/alerts')}>
             Error Monitor
           </Link>
+          <Link to="/dashboard" className={linkStyle('/dashboard')}>
+            Heatmap
+          </Link>
+
         </div>
       </div>
     </header>

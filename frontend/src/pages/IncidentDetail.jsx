@@ -14,6 +14,7 @@ function IncidentDetail() {
   const [editFix, setEditFix] = useState(false);
   const [editedSummary, setEditedSummary] = useState({});
   const [editedFix, setEditedFix] = useState('');
+  const [generating, setGenerating] = useState(false);
 
   useEffect(() => {
     fetch('/mockData.json')
@@ -58,6 +59,32 @@ function IncidentDetail() {
     setEditFix(false);
   };
 
+  const simulateAIResponse = () => {
+    setGenerating(true);
+
+    // Simulate delay + mock AI summary generation
+    setTimeout(() => {
+      const mockAI = {
+        root_cause:
+          'A configuration error during the morning deployment caused authentication failures across services.',
+        detection:
+          'Dynatrace and Splunk logs began showing elevated login error rates at 12:02 PM. MI was proposed at 12:03 PM (INC1057).',
+        response:
+          'Teams channel was created at 12:04 PM. On-call engineers and infrastructure teams were paged immediately.',
+        timeline:
+          '12:02 - Error spike detected\n12:03 - MI proposed (INC1057)\n12:04 - War room created\n12:06 - Rollback initiated\n12:15 - Fix implemented'
+      };
+
+      setEditedSummary((prev) => ({
+        ...prev,
+        ...mockAI
+      }));
+
+      setEditSummary(true);
+      setGenerating(false);
+    }, 2000);
+  };
+
   if (!incident) return <div className="p-6">Loading...</div>;
 
   return (
@@ -92,13 +119,23 @@ function IncidentDetail() {
           <div className="bg-white border border-gray-200 rounded shadow p-4">
             <div className="flex justify-between items-center mb-2">
               <h3 className="text-lg font-semibold text-quantum-green">Post-Incident Summary</h3>
-              <button
-                onClick={() => setEditSummary(!editSummary)}
-                className="text-sm text-blue-600 hover:underline"
-              >
-                {editSummary ? 'Cancel Edit' : 'Edit'}
-              </button>
+              <div className="flex gap-3">
+                <button
+                  onClick={simulateAIResponse}
+                  className="text-sm text-blue-600 hover:underline"
+                  disabled={generating}
+                >
+                  {generating ? 'Generating...' : 'Generate with AI'}
+                </button>
+                <button
+                  onClick={() => setEditSummary(!editSummary)}
+                  className="text-sm text-blue-600 hover:underline"
+                >
+                  {editSummary ? 'Cancel Edit' : 'Edit'}
+                </button>
+              </div>
             </div>
+
             <button
               onClick={() => setShowSummary(!showSummary)}
               className="text-blue-600 hover:underline text-sm mb-2"
@@ -108,8 +145,8 @@ function IncidentDetail() {
 
             {showSummary && (
               <div className="space-y-2 text-sm text-gray-700 mt-2">
-                {Object.entries(incident.post_incident_summary || {}).map(([key, value]) => {
-                  const editable = ['root_cause', 'recovery', 'prevention_plan'].includes(key);
+                {Object.entries(incident.post_incident_summary || {}).map(([key]) => {
+                  const editable = ['root_cause', 'recovery', 'prevention_plan', 'detection', 'response', 'timeline'].includes(key);
                   return (
                     <div key={key}>
                       <strong className="capitalize">{key.replace(/_/g, ' ')}:</strong>{' '}
