@@ -89,10 +89,10 @@ function HeatmapDashboard() {
 
     const dates = incidents.map((i) => new Date(i.date));
     const earliest = new Date(Math.min(...dates)).toISOString().split('T')[0];
-    const latest = new Date(Math.max(...dates)).toISOString().split('T')[0];
+    const today = new Date().toISOString().split('T')[0];
 
     setStartDate(earliest);
-    setEndDate(latest);
+    setEndDate(today);
   };
 
   const exportToPDF = () => {
