@@ -1,0 +1,65 @@
+version: '3.8'
+
+services:
+  incident-predictor:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: incident-predictor-ml
+    environment:
+      # Prediction engine configuration
+      - DETECTION_INTERVAL_SECONDS=60
+      - MOCK_MODE=true
+      
+      # SDF Integration (use real values in production)
+      - SDF_ENDPOINT=https://sdf-gold.internal/api/events
+      # - SDF_API_KEY=${SDF_API_KEY}  # Uncomment and set in .env file
+      
+      # Dynatrace Integration (for production)
+      # - DYNATRACE_API_URL=${DYNATRACE_API_URL}
+      # - DYNATRACE_API_TOKEN=${DYNATRACE_API_TOKEN}
+      
+      # Logging
+      - LOG_LEVEL=INFO
+    
+    volumes:
+      # Mount logs directory for persistence
+      - ./logs:/app/logs
+      
+      # Mount source code for development (comment out in production)
+      # - ./src:/app/src
+    
+    restart: unless-stopped
+    
+    healthcheck:
+      test: ["CMD", "python", "-c", "import sys; sys.exit(0)"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    
+    # Resource limits (adjust based on your infrastructure)
+    deploy:
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 512M
+        reservations:
+          cpus: '0.5'
+          memory: 256M
+    
+    # Logging configuration
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+# Optional: Add a simple web dashboard (future enhancement)
+# services:
+#   dashboard:
+#     image: nginx:alpine
+#     ports:
+#       - "8080:80"
+#     volumes:
+#       - ./dashboard:/usr/share/nginx/html
